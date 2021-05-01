@@ -1,4 +1,5 @@
 import React, { Component } from "react";
+import { Redirect } from "react-router-dom";
 
 import "./login.css";
 import log from "@/assets/image/logo.png";
@@ -41,6 +42,10 @@ export default class Login extends Component {
   //   console.log("校验失败");
   // };
   render() {
+    if (storageUtils.getUser()._id) {
+      return <Redirect exact to="/home" />;
+    }
+
     return (
       <div className="login">
         <header className="login_header">

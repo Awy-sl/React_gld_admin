@@ -1,18 +1,19 @@
-import React, { Component, Suspense, lazy } from "react";
+import React, { lazy, Component, Suspense } from "react";
 import "./assets/style/index.css";
-import { BrowserRouter } from "react-router-dom";
-import { routes } from "./routes/routers.js";
+import { BrowserRouter, Switch, Route } from "react-router-dom";
 
-
-
-const RouteView = lazy(() => import("./routes/routeView.js"));
+const Login = lazy(() => import("./pages/login"));
+const Index = lazy(() => import("./pages/index"));
 
 export default class App extends Component {
   render() {
     return (
       <BrowserRouter className="main">
         <Suspense fallback="加载中">
-          <RouteView routes={routes}></RouteView>
+          <Switch>
+            <Route path="/login" component={Login}></Route>
+            <Route path="/" component={Index}></Route>
+          </Switch>
         </Suspense>
       </BrowserRouter>
     );

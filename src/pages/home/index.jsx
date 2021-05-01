@@ -1,14 +1,11 @@
 import React, { Component } from "react";
-import { Redirect } from "react-router-dom";
-import memoryUtils from "../../utils/memoryUtils";
 
-export default class Home extends Component {
+
+export default class index extends Component {
   render() {
-    const { user } = memoryUtils;
-    if (!user._id) return <Redirect to="/login" />;
     return (
-      <div>
-        <h1>admin {user._id}</h1>
+      <div className="oder" style={{ width: "100%", height: "100%" }}>
+        <h1>Hello World</h1>
       </div>
     );
   }

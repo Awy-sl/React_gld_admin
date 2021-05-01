@@ -1,0 +1,53 @@
+.ant-layout-header {
+  padding: 0;
+}
+
+.header-top {
+  padding-right: 30px;
+  height: 43px;
+  border-bottom: 1px solid rgb(37, 88, 255);
+  text-align: right;
+  line-height: 43px;
+}
+.header-boot {
+  display: flex;
+  height: 40px;
+  text-align: center;
+  justify-content: space-between;
+  span {
+    position: relative;
+    margin-left: 100px;
+    color: #746f6f;
+    line-height: 40px;
+    font-size: 20px;
+    font-weight: 550;
+    .sj {
+      position: absolute;
+      left: 50%;
+      bottom: -12px;
+      width: 0px;
+      height: 0px;
+      border-top: 12px solid white;
+      border-right: 12px solid white;
+      border-bottom: 12px solid transparent;
+      border-left: 12px solid transparent;
+
+      transform: translateX(-50%) rotate(135deg);
+    }
+  }
+  .weather {
+    display: flex;
+    margin-right: 30px;
+    font-size: 16px;
+    color: #746f6f;
+    p,
+    i {
+      font-weight: 550;
+      margin: 0;
+      line-height: 40px;
+    }
+    i {
+      margin: 0 10px;
+    }
+  }
+}

@@ -1,0 +1,19 @@
+.left-nav {
+  width: 200px;
+  height: 100%;
+}
+.left-nav .nav-log {
+  display: flex;
+  padding: 10px 10px;
+  height: 80px;
+  align-items: center;
+  background: #002140;
+  font-size: 30px;
+  color: white;
+  font-weight: 500;
+}
+.left-nav .nav-log img {
+  margin-right: 15px;
+  width: 40px;
+  height: 40px;
+}
