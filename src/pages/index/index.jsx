@@ -27,10 +27,17 @@ export default class Index extends Component {
               name={user.username || ""}
             ></Heade>
           </Header>
-          <Content style={{ margin: "20px", backgroundColor: "white" }}>
+          <Content
+            style={{
+              margin: "20px",
+              backgroundColor: "white",
+            }}
+          >
             <RouterViews routes={configPath} />
           </Content>
-          <Footer>Footer</Footer>
+          <Footer style={{ textAlign: "center" }}>
+            推荐使用谷歌浏览器，可以获得更佳页面操作体验
+          </Footer>
         </Layout>
       </Layout>
     );

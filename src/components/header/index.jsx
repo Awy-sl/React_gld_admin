@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from "react";
-import { Button } from "antd";
+import { Button, message } from "antd";
 import { Redirect } from "react-router-dom";
 import storageUtils from "../../utils/storageUtils";
 import { getWeather } from "../../config/index";
@@ -31,8 +31,19 @@ export default function Header(props) {
 
   // 获取天气
   async function getData() {
-    const { now } = await getWeather();
-    setWeather(now);
+    const result = await getWeather();
+    const { now } = result;
+    try {
+      if (now["text"]) {
+        setWeather(now);
+      }
+    } catch (error) {
+      message.error("获取天气失败" + result.code);
+      return setWeather({
+        text: result.code,
+        temp: 37,
+      });
+    }
   }
 
   // 实现动态面包屑导航
