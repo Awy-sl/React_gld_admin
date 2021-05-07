@@ -17,16 +17,11 @@ export default function Header(props) {
   useEffect(() => {
     const name = navto(props);
     setNavname(name);
-    function timers() {
-      let item = setInterval(() => {
-        let date = getDate(Date.now());
-        setDate(date);
-      }, 1000);
-      return item;
-    }
-    timers();
+    setInterval(() => {
+      let date = getDate(Date.now());
+      setDate(date);
+    }, 1000);
     getData();
-    return () => {};
   }, [props]);
 
   // 获取天气

@@ -66,7 +66,6 @@ export default function Category() {
   useEffect(() => {
     // 获取
     categoryList(parentId);
-
     if (update) {
       inputRef.current.state.value = updateData.name;
     }

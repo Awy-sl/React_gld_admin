@@ -29,7 +29,11 @@ class LeftNav extends Component {
   };
   UNSAFE_componentWillMount() {
     const { pathname } = this.props.location;
-    if (pathname === "/category" || pathname === "/product") {
+    if (
+      pathname === "/category" ||
+      pathname === "/product" ||
+      pathname.indexOf("/commodty") === 0
+    ) {
       this.setState({
         openKeys: ["/commodty"],
       });
