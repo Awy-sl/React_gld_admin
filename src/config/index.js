@@ -85,3 +85,27 @@ export const removeImage = async (name) => {
   const response = await $http("/manage/img/delete", { name }, "POST");
   return response;
 };
+// * 获取用户列表
+export const reqUserList = async () => {
+  const response = await $http("/manage/user/list");
+  return response;
+};
+// * 获取角色列表
+export const reqRoleList = async () => {
+  const response = await $http("/manage/role/list");
+  return response;
+};
+// * 添加角色
+export const addRole = async (roleName) => {
+  const response = await $http("/manage/role/add", { roleName }, "POST");
+  return response;
+};
+// * 设置角色权限
+export const setRolePermissions = async ({ _id, menus, auth_name }) => {
+  const response = await $http(
+    "/manage/role/update",
+    { _id, menus, auth_time: Date.now(), auth_name },
+    "POST"
+  );
+  return response;
+};
