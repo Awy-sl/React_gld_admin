@@ -93,12 +93,12 @@ export default class Login extends Component {
               name="password"
               rules={[
                 {
-                  min: 4,
-                  message: "密码必须大于4位",
-                },
-                {
                   required: true,
                   message: "请输入密码",
+                },
+                {
+                  min: 4,
+                  message: "密码必须大于4位",
                 },
                 {
                   max: 16,

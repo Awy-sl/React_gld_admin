@@ -1,11 +1,23 @@
 import React, { useState, useEffect, useCallback, useRef } from "react";
 import { Card, Button, Table, message } from "antd";
-import AddUser from "./addUser";
-import { reqUserList } from "../../config/index";
+import AddAmendUser from "./addAmendUser";
+import { reqUserList, deleteUser } from "../../config/index";
 import date from "../../utils/dateUtils";
 
 export default function User() {
-  const [userList, setUserList] = useState([]);
+  const [userList, setUserList] = useState([
+    {
+      create_time: 1620819696716,
+      email: "12@qq.com",
+      name: "root",
+      password: "63a9f0ea7bb98050796b649e85481845",
+      phone: "10000000000",
+      username: "root",
+      __v: 0,
+      _id: "609bbef041985a246c7ec11a",
+    },
+  ]);
+  const [roles, setRoles] = useState([]);
 
   const updateUserRef = useRef();
 
@@ -13,13 +25,18 @@ export default function User() {
     const { data: result } = await reqUserList();
     if (!result.status === 0) return message.error("获取失败");
     const { users, roles } = result.data;
-    try {
-      const newUsers = users.map((user, i) => {
-        user.name = roles[i].name;
-        return user;
-      });
-      setUserList(newUsers);
-    } catch (error) {}
+    // console.log(result.data);
+    setRoles(roles);
+
+    let newUser = users.map((user) => {
+      let name = roles.filter((item) => user.role_id === item._id);
+      if (name.length > 0) {
+        user.name = name[0].name;
+      }
+      return user;
+    });
+
+    setUserList(newUser);
   }, []);
 
   useEffect(() => {
@@ -51,29 +68,60 @@ export default function User() {
     },
     {
       title: "操作",
-      render: () => {
+      render: (data) => {
         return (
           <>
             <Button
               type="primary"
               onClick={() => {
-                const { showModal } = updateUserRef.current;
-                showModal();
+                const { showModal, isUpdate } = updateUserRef.current;
+                isUpdate();
+                showModal(data);
               }}
-              style={{ marginRight: "15px" }}
             >
               修改
             </Button>
-            <Button type="primary">删除</Button>
+            <Button
+              type="primary"
+              style={{ margin: "0px 15px" }}
+              onClick={() => {
+                const { showModal } = updateUserRef.current;
+                showModal(data, roles);
+              }}
+            >
+              设置角色
+            </Button>
+            <Button
+              type="primary"
+              onClick={async () => {
+                const { data: result } = await deleteUser(data._id);
+                if (!result.status === 0) return message.error("删除失败");
+                message.success("删除成功");
+                getUserList();
+              }}
+            >
+              删除
+            </Button>
           </>
         );
       },
     },
   ];
-  const title = <AddUser ref={updateUserRef} />;
+  const title = (
+    <AddAmendUser ref={updateUserRef} getUserList={getUserList} roles={roles} />
+  );
   return (
     <Card title={title}>
-      <Table rowKey="_id" dataSource={userList} columns={columns} border />
+      <Table
+        rowKey="_id"
+        dataSource={userList}
+        columns={columns}
+        pagination={{
+          defaultPageSize: 4,
+          showQuickJumper: true,
+        }}
+        border
+      />
     </Card>
   );
 }

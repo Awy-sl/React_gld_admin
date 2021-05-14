@@ -90,6 +90,11 @@ export const reqUserList = async () => {
   const response = await $http("/manage/user/list");
   return response;
 };
+// * 删除用户
+export const deleteUser = async (userId) => {
+  const response = await $http("/manage/user/delete", { userId }, "POST");
+  return response;
+};
 // * 获取角色列表
 export const reqRoleList = async () => {
   const response = await $http("/manage/role/list");
@@ -109,3 +114,9 @@ export const setRolePermissions = async ({ _id, menus, auth_name }) => {
   );
   return response;
 };
+
+// * 添加用户
+export const addUser = async (user) => await $http("/manage/user/add", user, "POST");
+  
+// * 修改用户 
+export const updateUser = async (user) => await $http("/manage/user/update", user, "POST")

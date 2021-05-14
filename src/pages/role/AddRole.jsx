@@ -27,12 +27,7 @@ const CustomizedForm = ({ onChange, fields }) => (
 
 function AddRole(props) {
   const { setForm, isOk, setIsOk } = props;
-  const [fieles, setFields] = useState([
-    {
-      name: "roleName",
-      value: "",
-    },
-  ]);
+  const [fieles, setFields] = useState([]);
 
   const updateRole = useCallback(() => {
     if (isOk) {
