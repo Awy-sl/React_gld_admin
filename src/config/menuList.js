@@ -26,6 +26,7 @@ export const menuList = [
     key: "/home",
     path: "/home",
     icon: HomeFilled,
+    isPublic: true,
   },
   {
     title: "商品",

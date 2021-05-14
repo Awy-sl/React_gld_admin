@@ -131,6 +131,9 @@ export default function Role() {
         rowSelection={{
           type: "radio",
           selectedRowKeys: [role._id],
+          onSelect: (role) => {
+            setRole(role);
+          },
         }}
       />
       <Modal
